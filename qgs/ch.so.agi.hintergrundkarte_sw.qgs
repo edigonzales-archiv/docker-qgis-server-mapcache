@@ -7,7 +7,7 @@
     <customproperties/>
     <layer-tree-group expanded="1" checked="Qt::Checked" name="ch.so.agi.hintergrundkarte_sw">
       <customproperties/>
-      <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="maske20180520175213352" source="/geodata/geodata/ch.so.agi.hintergrundkarte/maske.gpkg" name="maske">
+      <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="maske20180520175213352" source="/data/maske.gpkg" name="maske">
         <customproperties/>
       </layer-tree-layer>
       <layer-tree-layer expanded="0" providerKey="postgres" checked="Qt::Checked" id="hoheitsgrenzen_kantonsgrenze20180518060059902" source="service='sogis_services' sslmode=disable key='t_id' srid=2056 type=MultiPolygon table=&quot;agi_hoheitsgrenzen_pub&quot;.&quot;hoheitsgrenzen_kantonsgrenze&quot; (geometrie) sql=" name="hoheitsgrenzen_kantonsgrenze">
@@ -7702,7 +7702,7 @@ def my_form_open(dialog, layer, feature):
         <ymax>1268000</ymax>
       </extent>
       <id>maske20180520175213352</id>
-      <datasource>/geodata/geodata/maske.gpkg</datasource>
+      <datasource>/data/maske.gpkg</datasource>
       <keywordList>
         <value></value>
       </keywordList>

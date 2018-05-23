@@ -7,7 +7,7 @@
     <customproperties/>
     <layer-tree-group expanded="1" checked="Qt::Checked" name="ch.so.agi.hintergrundkarte_farbig">
       <customproperties/>
-      <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="maske20180521084251545" source="/geodata/geodata/ch.so.agi.hintergrundkarte/maske.gpkg" name="maske">
+      <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="maske20180521084251545" source="/data/maske.gpkg" name="maske">
         <customproperties/>
       </layer-tree-layer>
       <layer-tree-layer expanded="0" providerKey="gdal" checked="Qt::Checked" id="krel100020180518114447800" source="/geodata/geodata/ch.swisstopo.lk1000.farbig_relief/krel1000.tif" name="krel1000">
@@ -6273,7 +6273,7 @@ def my_form_open(dialog, layer, feature):
         <ymax>1268000</ymax>
       </extent>
       <id>maske20180521084251545</id>
-      <datasource>/geodata/geodata/ch.so.agi.hintergrundkarte/maske.gpkg</datasource>
+      <datasource>/data/maske.gpkg</datasource>
       <keywordList>
         <value></value>
       </keywordList>
