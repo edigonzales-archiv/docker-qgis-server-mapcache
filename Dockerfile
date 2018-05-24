@@ -45,21 +45,22 @@ RUN a2enmod cgid
 RUN a2enmod headers
 RUN a2enmod mapcache
 
-# QGIS server configuration
+# QGIS server and MapCache configuration
 # Writeable dir for qgis_mapserv.log and qgis-auth.db
 RUN mkdir /var/log/qgis && chown www-data:www-data /var/log/qgis
 RUN mkdir /var/lib/qgis && chown www-data:www-data /var/lib/qgis
 ARG URL_PREFIX=/qgis
-ARG QGIS_SERVER_LOG_LEVEL=1
-ADD qgis-server.conf /etc/apache2/sites-enabled/qgis-server.conf
-RUN sed -i "s!@URL_PREFIX@!$URL_PREFIX!g; s!@QGIS_SERVER_LOG_LEVEL@!$QGIS_SERVER_LOG_LEVEL!g" /etc/apache2/sites-enabled/qgis-server.conf
-#RUN rm /etc/apache2/sites-enabled/000-default.conf
+ARG QGIS_SERVER_LOG_LEVEL=2
 
-# MapCache module configuration and mapcache.xml
-COPY mapcache.conf /etc/apache2/sites-available/mapcache.conf
+#COPY mapcache.conf /etc/apache2/sites-available/mapcache.conf
 RUN mkdir /mapcache
 COPY mapcache.xml /mapcache/mapcache.xml
+
+ADD qgis-server.conf /etc/apache2/sites-available/qgis-server.conf
+RUN sed -i "s!@URL_PREFIX@!$URL_PREFIX!g; s!@QGIS_SERVER_LOG_LEVEL@!$QGIS_SERVER_LOG_LEVEL!g" /etc/apache2/sites-available/qgis-server.conf
+RUN a2ensite qgis-server
 RUN a2dissite 000-default 
+
 
 # Install apache2 run script
 RUN mkdir /etc/service/apache2
@@ -74,13 +75,14 @@ RUN chmod +x /etc/service/dockerlog/run
 # Copy postgres service file w/ connection credentials
 ADD pg_service.conf /etc/postgresql-common/
 
-# Copy QGIS project files. See qgis-server.conf
+# Copy QGIS project files. See qgis-server.conf.
 RUN mkdir /data
 COPY qgs/*.qgs /data/
 
 # Copy background map masking layer and seeding perimeters. 
 # Masking layer MUST BE STORED IN THE DATABASE! TODO!
 COPY data/*.gpkg /data/
+RUN chmod 777 /data/*.gpkg
 
 # Copy additional svg symbols
 COPY symbols/grundbuchplan.zip /tmp/grundbuchplan.zip
@@ -91,10 +93,14 @@ RUN unzip -d /usr/share/qgis/svg/ /tmp/grundbuchplan.zip && \
 # Directory for external (raster) data
 RUN mkdir /geodata
 
+# Directory for tiles
+RUN mkdir /tiles
+
 EXPOSE 80
 
 #VOLUME ["/data"]
 VOLUME ["/geodata/geodata"]
+VOLUME ["/tiles"]
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]

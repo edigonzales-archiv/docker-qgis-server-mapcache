@@ -63,11 +63,11 @@
       <getmap>
          <params>
             <FORMAT>image/png</FORMAT>
-            <LAYERS>hintergrundkarte_farbig</LAYERS>
+            <LAYERS>ch.so.agi.hintergrundkarte_farbig</LAYERS>
          </params>
       </getmap>
       <http>
-         <url>http://localhost/cgi-bin/qgis_mapserv.fcgi?map=/opt/qgis/hintergrundkarte_farbig.qgs</url>
+         <url>http://localhost/qgis/ch.so.agi.hintergrundkarte_farbig</url>
          <connection_timeout>60</connection_timeout>         
       </http>
    </source>
@@ -76,11 +76,11 @@
       <getmap>
          <params>
             <FORMAT>image/png</FORMAT>
-            <LAYERS>hintergrundkarte_sw</LAYERS>
+            <LAYERS>ch.so.agi.hintergrundkarte_sw</LAYERS>
          </params>
       </getmap>
       <http>
-         <url>http://localhost/cgi-bin/qgis_mapserv.fcgi?map=/opt/qgis/hintergrundkarte_sw.qgs</url>
+         <url>http://localhost/qgis/ch.so.agi.hintergrundkarte_sw</url>
          <connection_timeout>60</connection_timeout>         
       </http>
    </source>
